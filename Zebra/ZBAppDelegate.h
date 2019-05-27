@@ -18,5 +18,6 @@
 + (NSString *)sourcesListPath;
 + (NSString *)databaseLocation;
 + (NSString *)debsLocation;
++ (NSString *)featuredLocation;
 @end
 

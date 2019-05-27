@@ -77,6 +77,24 @@ static const NSInteger kZebraMaxTime = 60 * 60 * 24; // 1 day
     return lists;
 }
 
++ (NSString *)featuredLocation {
+    NSString *featured = [[self documentsDirectory] stringByAppendingPathComponent:@"/featured/"];
+    BOOL dirExsits;
+    [[NSFileManager defaultManager] fileExistsAtPath:featured isDirectory:&dirExsits];
+    if (!dirExsits) {
+        NSLog(@"[Zebra] Creating featured directory.");
+        NSError *error;
+        [[NSFileManager defaultManager] createDirectoryAtPath:featured withIntermediateDirectories:true attributes:nil error:&error];
+        
+        if (error != NULL) {
+            [self sendErrorToTabController:[NSString stringWithFormat:@"Error while creating featured directory: %@.", error.localizedDescription]];
+            NSLog(@"[Zebra] Error while creating featured directory: %@.", error.localizedDescription);
+        }
+    }
+    return featured;
+}
+
+
 + (NSURL *)sourcesListURL {
     return [NSURL URLWithString:[@"file://" stringByAppendingString:[self sourcesListPath]]];
 }
