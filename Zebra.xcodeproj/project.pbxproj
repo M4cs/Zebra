@@ -13,6 +13,9 @@
 		363FE246228785AE00B69929 /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 363FE245228785AE00B69929 /* UICKeyChainStore.m */; };
 		363FE24922878EF100B69929 /* UIBarButtonItem+blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 363FE24822878EF000B69929 /* UIBarButtonItem+blocks.m */; };
 		363FE24F2287A1DD00B69929 /* ZBRepoPurchasedPackagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 363FE24E2287A1DD00B69929 /* ZBRepoPurchasedPackagesTableViewController.m */; };
+		36BC41AD229CECFF007F7864 /* UINavigationController+Opacity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36BC41AA229CECFF007F7864 /* UINavigationController+Opacity.mm */; };
+		36BC41AE229CECFF007F7864 /* UIImage+ImageWithColor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36BC41AC229CECFF007F7864 /* UIImage+ImageWithColor.mm */; };
+		36BC41BA229CF544007F7864 /* UIColor+hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC41B9229CF544007F7864 /* UIColor+hex.m */; };
 		36D15327229240F70010EC5C /* UIImageView+Network.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D15324229240F60010EC5C /* UIImageView+Network.m */; };
 		36D15328229240F70010EC5C /* FTWCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D15325229240F60010EC5C /* FTWCache.m */; };
 		36D1534022924DA60010EC5C /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36D1533E22924D9F0010EC5C /* SDWebImage.framework */; };
@@ -100,6 +103,12 @@
 		363FE24822878EF000B69929 /* UIBarButtonItem+blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+blocks.m"; sourceTree = "<group>"; };
 		363FE24D2287A1DD00B69929 /* ZBRepoPurchasedPackagesTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZBRepoPurchasedPackagesTableViewController.h; sourceTree = "<group>"; };
 		363FE24E2287A1DD00B69929 /* ZBRepoPurchasedPackagesTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZBRepoPurchasedPackagesTableViewController.m; sourceTree = "<group>"; };
+		36BC41A9229CECFE007F7864 /* UINavigationController+Opacity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Opacity.h"; sourceTree = "<group>"; };
+		36BC41AA229CECFF007F7864 /* UINavigationController+Opacity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UINavigationController+Opacity.mm"; sourceTree = "<group>"; };
+		36BC41AB229CECFF007F7864 /* UIImage+ImageWithColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageWithColor.h"; sourceTree = "<group>"; };
+		36BC41AC229CECFF007F7864 /* UIImage+ImageWithColor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+ImageWithColor.mm"; sourceTree = "<group>"; };
+		36BC41B8229CF544007F7864 /* UIColor+hex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+hex.h"; sourceTree = "<group>"; };
+		36BC41B9229CF544007F7864 /* UIColor+hex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+hex.m"; sourceTree = "<group>"; };
 		36D15323229240F60010EC5C /* UIImageView+Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Network.h"; sourceTree = "<group>"; };
 		36D15324229240F60010EC5C /* UIImageView+Network.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Network.m"; sourceTree = "<group>"; };
 		36D15325229240F60010EC5C /* FTWCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTWCache.m; sourceTree = "<group>"; };
@@ -352,6 +361,12 @@
 		89BDCB6F2289FEA800FC1345 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				36BC41B8229CF544007F7864 /* UIColor+hex.h */,
+				36BC41B9229CF544007F7864 /* UIColor+hex.m */,
+				36BC41AB229CECFF007F7864 /* UIImage+ImageWithColor.h */,
+				36BC41AC229CECFF007F7864 /* UIImage+ImageWithColor.mm */,
+				36BC41A9229CECFE007F7864 /* UINavigationController+Opacity.h */,
+				36BC41AA229CECFF007F7864 /* UINavigationController+Opacity.mm */,
 				36D15326229240F70010EC5C /* FTWCache.h */,
 				36D15325229240F60010EC5C /* FTWCache.m */,
 				36D15323229240F60010EC5C /* UIImageView+Network.h */,
@@ -598,7 +613,9 @@
 				896F11C321B231900017B581 /* ZBRepo.m in Sources */,
 				893952FF220B5D0100995109 /* ZBConsoleViewController.m in Sources */,
 				898E010E22480F8900BEA8E9 /* ZBRepoSectionsListTableViewController.m in Sources */,
+				36BC41AE229CECFF007F7864 /* UIImage+ImageWithColor.mm in Sources */,
 				8900FA502201E9C200476310 /* ZBQueueViewController.m in Sources */,
+				36BC41BA229CF544007F7864 /* UIColor+hex.m in Sources */,
 				899203B722490D4C0098AC7B /* dict.c in Sources */,
 				3635D6AF2299C4E7008D4CD5 /* ZBFeaturedCollectionViewCell.m in Sources */,
 				89C5FDF821B1B3AF00A10E58 /* ZBPackageListTableViewController.m in Sources */,
@@ -608,6 +625,7 @@
 				89CA2139224043D1008F09DB /* vercmp.c in Sources */,
 				89A1B735223C97210053D0E2 /* ZBTabBarController.m in Sources */,
 				9EAE364B2289224E004CBBA3 /* ZBPackageActionsManager.m in Sources */,
+				36BC41AD229CECFF007F7864 /* UINavigationController+Opacity.mm in Sources */,
 				7821AF6F2275F3A4006C0315 /* ZBAddRepoViewController.m in Sources */,
 				896BAC42226D5C440020AC3C /* ZBExternalPackageTableViewController.m in Sources */,
 				49E1304622715DB8006F450A /* UIColor+GlobalColors.m in Sources */,

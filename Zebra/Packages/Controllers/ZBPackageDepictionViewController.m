@@ -18,13 +18,19 @@
 #import <UIColor+GlobalColors.h>
 #import "UICKeyChainStore.h"
 #import "MobileGestalt.h"
+#import "UIImage+ImageWithColor.h"
+#import "UINavigationController+Opacity.h"
+#import "UIColor+hex.h"
 #import <sys/sysctl.h>
 #import <sys/utsname.h>
+@import SDWebImage;
 
 @interface ZBPackageDepictionViewController () {
     UIProgressView *progressView;
     WKWebView *webView;
     BOOL presented;
+    UIImageView *imageView;
+    NSMutableDictionary * fullJSON;
 }
 @end
 
@@ -134,12 +140,96 @@
 //    [webView loadFileURL:url allowingReadAccessToURL:[url URLByDeletingLastPathComponent]];
     
     [webView addObserver:self forKeyPath:NSStringFromSelector(@selector(estimatedProgress)) options:NSKeyValueObservingOptionNew context:NULL];
+    
+    //Native stuff
+    imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 200)];
+    imageView.image = [UIImage imageNamed:@"Unknown"];
+    NSDictionary *views = @{ @"drw" : webView };
+    [self.view addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"H:|[drw]|"
+                               options:0
+                               metrics:nil
+                               views:views
+                               ]];
+    [self.view addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"V:|[drw]|"
+                               options:0
+                               metrics:nil
+                               views:views
+                               ]];
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.clipsToBounds = TRUE;
+    [self.view addSubview:imageView];
+    self.navigationController.opacity = 0.0;
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
+    webView.scrollView.contentInset = UIEdgeInsetsMake(100, 0, self.tabBarController.tabBar.frame.size.height, 0);
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:TRUE];
     [self configureNavButton];
+    self.navigationController.opacity = 0.0;
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
+    if(package.nativeDepictionURL.absoluteString.length > 0){
+        [self retrieveNativeJSON];
+    }
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.navigationController.clear = NO;
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
+    self.navigationController.navigationBar.tintColor = [UIColor tintColor];
+}
+
+-(void)retrieveNativeJSON{
+    NSURLSession *session = [NSURLSession sharedSession];
+    [[session dataTaskWithURL:package.nativeDepictionURL
+            completionHandler:^(NSData *data,
+                                NSURLResponse *response,
+                                NSError *error) {
+                NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+                if(data != nil && (long)[httpResponse statusCode] != 404){
+                    self->fullJSON = [NSJSONSerialization JSONObjectWithData:data
+                                                                         options:kNilOptions
+                                                                           error:nil];
+                    NSLog(@"Downloaded %@", self->fullJSON);
+                    [self setupWithJSON];
+                    
+                    
+                    
+                }
+                
+            }] resume];
+}
+
+-(void)setupWithJSON{
+    if(fullJSON[@"headerImage"] != [NSNull null]){
+        [self->imageView sd_setImageWithURL:self->fullJSON[@"headerImage"] placeholderImage:[UIImage imageNamed:@"Unknown"]];
+    }
+    if(fullJSON[@"tintColor"] != [NSNull null]){
+        self.navigationController.navigationBar.tintColor = [UIColor colorFromHexCode:fullJSON[@"tintColor"]];
+        NSLog(@"Running");
+    }
+}
+//Need to implement this at a later date
+/*
+ @implementation NSDictionary (Safety)
+ 
+ - (id)safeObjectForKey:(id)aKey {
+    NSObject *object = self[aKey];
+ 
+    if (object == [NSNull null]) {
+        return nil;
+    }
+ 
+    return object;
+ }
+ 
+ @end*/
+
 
 
 - (NSString *)deviceModelID {
